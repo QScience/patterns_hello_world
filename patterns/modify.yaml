@@ -1,0 +1,18 @@
+# YAML Content Pattern
+# QScience
+
+info:
+  title: Modify Hello World
+  description: Modifies the Hello World Messages
+  author: QScience
+  category: Content
+  version: 1.0
+  core: 7.x
+  author_website: http://qlectives.eu/
+
+actions:
+
+  - modify:
+     tag: patterns_test
+     patterns_test_msg_01: Message 1 configured through Patterns
+     patterns_test_msg_02: Another message configured through Patterns!

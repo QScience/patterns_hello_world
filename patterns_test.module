@@ -1,0 +1,49 @@
+<?php
+
+function patterns_test_menu() {
+    $items = array();
+
+    $items['patterns-test/hello-world'] = array(
+        'title' => 'This is just a Patterns Test',
+        'page callback' => 'say_hello_world',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+     );
+    $items['admin/config/patterns-test'] = array(
+      'title' => 'Patterns Test Config',
+      'description' => 'Settings for module Patterns Test',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('patterns_test_admin_settings'),
+      'access callback' => 'user_access',
+      'access arguments' => array('administer site configuration'),
+      'type' => MENU_NORMAL_ITEM,
+      'file' => 'patterns_test.admin.inc',
+    );
+     
+    return $items;
+}
+
+function say_hello_world() {
+    $vars = array();
+    $vars['type']="ul";
+    $vars['title'] = "";
+    $vars['attributes'] = array("");
+    $vars['items'][0] = variable_get('patterns_test_msg_01', array('Hello World!'));
+    $vars['items'][1] = variable_get('patterns_test_msg_02', array('Hello World!'));
+
+    return theme_item_list($vars);
+}
+
+function patterns_test_patterns() {
+    $actions['patterns_test'] = array(
+    PATTERNS_INFO => t('Allows to set the message value'),
+    //PATTERNS_CREATE => array('form_to_create_tag1', 'form_to_create_tag2'),
+    PATTERNS_MODIFY => array('patterns_test_admin_settings'),
+    //PATTERNS_DELETE => array('form_to_delete_tag1', 'form_to_delete_tag2'),
+    //PATTERNS_FILES  => $files = array('some file that needs to be included'),
+    //PATTERNS_EXPORT => array( PATTERNS_EXPORT_ALL => 'export_all_tag1'),
+  );
+
+  //$actions['tag2'] = ... ;
+  return $actions;
+}

@@ -1,0 +1,9 @@
+name = Patterns Test
+description = Just a very simple module to test patterns functionalities.
+
+core = 7.x
+package = Patterns
+files[] = patterns_test.module
+files[] = patterns_test.admin.inc
+
+configure = admin/config/patterns-test
