@@ -55,10 +55,15 @@ function patterns_hello_world_patterns() {
     $actions['patterns_hello_world'] = array(
     PATTERNS_INFO => t('Allows to set the message value'),
     PATTERNS_MODIFY => array('patterns_hello_world_admin_settings'),
-    //PATTERNS_EXPORT => array( PATTERNS_EXPORT_ALL => 'export_all_tag1'),
+    PATTERNS_EXPORT => array( PATTERNS_EXPORT_ALL => 'patterns_hello_world_export_all_settings'),
   );
+  return $actions;
+}
 
-  //$actions['tag2'] = ... ;
+function patterns_hello_world_export_all_settings($args = NULL, &$result = NULL) {
+  $form_id = 'patterns_hello_world_admin_settings';
+  $actions = array();
+  $actions = array_merge($result, patterns_export_actions_from_form($form_id, NULL, 'patterns_hello_world', PATTERNS_MODIFY));
   return $actions;
 }
 
