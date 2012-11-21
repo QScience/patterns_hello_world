@@ -1,40 +1,54 @@
 <?php
 
+/**
+ * Implements hook_menu().
+ */
 function patterns_hello_world_menu() {
-    $items = array();
+  $items = array();
 
-    $items['patterns-hello-world/hello-world'] = array(
-        'title' => 'This is just a Patterns Test',
-        'page callback' => 'say_hello_world',
-        'access arguments' => array('access content'),
-        'type' => MENU_CALLBACK,
-     );
-    $items['admin/config/patterns-hello-world'] = array(
-      'title' => 'Patterns Test Config',
-      'description' => 'Settings for module Patterns Test',
-      'page callback' => 'drupal_get_form',
-      'page arguments' => array('patterns_hello_world_admin_settings'),
-      'access callback' => 'user_access',
-      'access arguments' => array('administer site configuration'),
-      'type' => MENU_NORMAL_ITEM,
-    );
-     
-    return $items;
+  $items['patterns-hello-world/hello-world'] = array(
+      'title' => 'This is just a Patterns Test',
+      'page callback' => 'say_hello_world',
+      'access arguments' => array('access content'),
+      'type' => MENU_CALLBACK,
+   );
+  $items['admin/config/patterns-hello-world'] = array(
+    'title' => 'Patterns Test Config',
+    'description' => 'Settings for module Patterns Test',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('patterns_hello_world_admin_settings'),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+   
+  return $items;
 }
 
+/**
+ * 
+ * Returns a list with the configuration message set in the admin form.
+ * 
+ * @return string
+ */
 function say_hello_world() {
-    $vars = array();
-    $vars['type']="ul";
-    $vars['title'] = "";
-    $vars['attributes'] = array("");
-    $vars['items'][0] = variable_get('patterns_hello_world_msg_01', array('Hello World!'));
-    $vars['items'][1] = variable_get('patterns_hello_world_msg_02', array('Hello World!'));
-
-    return theme_item_list($vars);
+  $vars = array();
+  $vars['type']="ul";
+  $vars['title'] = "";
+  $vars['attributes'] = array("");
+  $vars['items'][0] = variable_get('patterns_hello_world_msg_01', array('Hello World!'));
+  $vars['items'][1] = variable_get('patterns_hello_world_msg_02', array('Hello World!'));
+  
+  return theme_item_list($vars);
 }
 
+/**
+ * 
+ * Returns the administration form to configure the Hello World messages.
+ * 
+ * @return $form
+ */
 function patterns_hello_world_admin_settings() {
-
   $form['patterns_hello_world_settings']['patterns_hello_world_msg_01'] = array(
       '#type' => 'textfield',
       '#title' => t('Message One'),
@@ -47,12 +61,19 @@ function patterns_hello_world_admin_settings() {
       '#default_value'=> variable_get('patterns_hello_world_msg_02', array('Hello World!')),
       '#description' => t('The text to be displayed in the main page.'),
   );
+  
   return system_settings_form($form);
 }
 
-
+/**
+ * 
+ * Implements hook_patterns().
+ * This is the only mandatory hook since version 7.x-1.0-beta5!
+ * 
+ * @return $actions
+ */
 function patterns_hello_world_patterns() {
-    $actions['patterns_hello_world'] = array(
+  $actions['patterns_hello_world'] = array(
     PATTERNS_INFO => t('Allows to set the message value'),
     PATTERNS_MODIFY => array('patterns_hello_world_admin_settings'),
     PATTERNS_EXPORT => array( PATTERNS_EXPORT_ALL => 'patterns_hello_world_export_all_settings'),
@@ -60,6 +81,14 @@ function patterns_hello_world_patterns() {
   return $actions;
 }
 
+/**
+ * 
+ * Returns a PATTERNS_MODIFY_ACTION with the values from the admin form.
+ * 
+ * @param string $args
+ * @param string $result
+ * @return $actions
+ */
 function patterns_hello_world_export_all_settings($args = NULL, &$result = NULL) {
   $form_id = 'patterns_hello_world_admin_settings';
   $actions = array();
