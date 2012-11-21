@@ -13,6 +13,6 @@ info:
 actions:
 
   - modify:
-     tag: patterns_test
-     patterns_test_msg_01: Message 1 configured through Patterns
-     patterns_test_msg_02: Another message configured through Patterns!
+     tag: patterns_hello_world
+     patterns_hello_world_msg_01: Message 1 configured through Patterns
+     patterns_hello_world_msg_02: Another message configured through Patterns!

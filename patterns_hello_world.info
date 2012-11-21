@@ -1,9 +1,8 @@
-name = Patterns Test
+name = Patterns Hellow World
 description = Just a very simple module to test patterns functionalities.
 
 core = 7.x
 package = Patterns
-files[] = patterns_test.module
-files[] = patterns_test.admin.inc
+files[] = patterns_hello_world.module
 
-configure = admin/config/patterns-test
+configure = admin/config/patterns-hello-world
