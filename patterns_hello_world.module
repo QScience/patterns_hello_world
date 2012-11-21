@@ -54,13 +54,17 @@ function patterns_hello_world_admin_settings() {
 function patterns_hello_world_patterns() {
     $actions['patterns_hello_world'] = array(
     PATTERNS_INFO => t('Allows to set the message value'),
-    //PATTERNS_CREATE => array('form_to_create_tag1', 'form_to_create_tag2'),
     PATTERNS_MODIFY => array('patterns_hello_world_admin_settings'),
-    //PATTERNS_DELETE => array('form_to_delete_tag1', 'form_to_delete_tag2'),
-    //PATTERNS_FILES  => $files = array('some file that needs to be included'),
     //PATTERNS_EXPORT => array( PATTERNS_EXPORT_ALL => 'export_all_tag1'),
   );
 
   //$actions['tag2'] = ... ;
   return $actions;
+}
+
+/**
+ * Implements hook_patterns_directory().
+ */
+function patterns_hello_world_patterns_directory() {
+  return drupal_get_path('module', 'patterns_hello_world') . '/patterns/';
 }

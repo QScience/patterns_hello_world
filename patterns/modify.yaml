@@ -5,7 +5,7 @@ info:
   title: Modify Hello World
   description: Modifies the Hello World Messages
   author: QScience
-  category: Content
+  category: Hello World Patterns
   version: 1.0
   core: 7.x
   author_website: http://qlectives.eu/

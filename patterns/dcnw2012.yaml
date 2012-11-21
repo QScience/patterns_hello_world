@@ -5,7 +5,7 @@ info:
   title: DCNW2012
   description: Modify the admin config parameters
   author: QScience
-  category: Content
+  category: Hello World Patterns
   version: 1.0
   core: 7.x
   author_website: http://qlectives.eu/
