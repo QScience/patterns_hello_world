@@ -92,7 +92,7 @@ function patterns_hello_world_patterns() {
 function patterns_hello_world_export_all_settings($args = NULL, &$result = NULL) {
   $form_id = 'patterns_hello_world_admin_settings';
   $actions = array();
-  $actions = array_merge($result, patterns_export_actions_from_form($form_id, NULL, 'patterns_hello_world', PATTERNS_MODIFY));
+  $actions = array_merge($actions, patterns_export_actions_from_form($form_id, NULL, 'patterns_hello_world', PATTERNS_MODIFY));
   return $actions;
 }
 
